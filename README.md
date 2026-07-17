@@ -59,7 +59,8 @@ WHERE
     gender IS NULL
     OR
     age IS NULL
-    OR category IS NULL
+    OR
+    category IS NULL
     OR 
     quantity IS NULL
     OR
