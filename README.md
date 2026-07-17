@@ -14,6 +14,25 @@
 
 - **Создание базы данных**: проект начинается с создания базы данных `retail`
 - **Создание таблицы**: создаётся таблица `retail_sales` для хранения данных о продажах. . Структура таблицы включает следующие колонки: идентификатор транзакции, дата продажи, время продажи, идентификатор клиента, пол, возраст, категория товара, количество проданных единиц, цена за единицу, себестоимость проданных товаров (COGS) и общая сумма продажи.
+```sql
+CREATE DATABASE retail;
+
+DROP TABLE IF EXISTS retail_sales;
+CREATE TABLE retail_sales
+			(
+				transactions_id	INT PRIMARY KEY,
+				sale_date DATE,
+				sale_time TIME,
+				customer_id	INT,
+				gender VARCHAR(15),
+				age	INT,
+				category VARCHAR(15),	
+				quantiy	INT,
+				price_per_unit FLOAT,
+				cogs FLOAT,
+				total_sale FLOAT
+			);
+```
 
 ### 2. Исследование и очистка данных
 
@@ -24,6 +43,50 @@
 - **Количество категорий**: выявление всех уникальных категорий товаров в датасете.
 
 - **Проверка на пропуски**: поиск записей с нулевыми значениями и их удаление.
+```sql
+SELECT COUNT(*) FROM retail_sales;
+SELECT COUNT(DISTINCT customer_id) FROM retail_sales;
+SELECT DISTINCT category FROM retail_sales;
+
+SELECT * FROM retail_sales
+WHERE 
+    sale_date IS NULL
+    OR
+    sale_time IS NULL
+    OR
+    customer_id IS NULL
+    OR 
+    gender IS NULL
+    OR
+    age IS NULL
+    OR category IS NULL
+    OR 
+    quantity IS NULL
+    OR
+    price_per_unit IS NULL
+    OR
+    cogs IS NULL;
+
+DELETE FROM retail_sales
+WHERE 
+    sale_date IS NULL
+    OR
+    sale_time IS NULL
+    OR
+    customer_id IS NULL
+    OR 
+    gender IS NULL
+    OR
+    age IS NULL
+    OR
+    category IS NULL
+    OR 
+    quantity IS NULL
+    OR
+    price_per_unit IS NULL
+    OR
+    cogs IS NULL;
+```
 
 ### 3. Анализ данных и выводы
 
